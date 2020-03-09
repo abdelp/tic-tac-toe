@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# frozen_string_literal: true
 
 # Board Class for tic-tac-toe game
 class Board
@@ -64,7 +63,7 @@ if option == 'play'
     current_player = current_player.player_number == 1 ? player2 : player1
   end
 
-  p "Game finished"
+  p 'Game finished'
 else
   exit
 end
