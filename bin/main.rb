@@ -56,11 +56,13 @@ if exit_play == "play"
   slot_selected = gets.chomp.to_i
   board.select_slot(player1, slot_selected)
   p board.slots[0], board.slots[1], board.slots[2]
+  p "Now, your move is displayed on the board"
 
   p "Player #{player2.player_number}"
   slot_selected = gets.chomp.to_i
   board.select_slot(player2, slot_selected)
   p board.slots[0], board.slots[1], board.slots[2]
+  p "Now, your move is displayed on the board"
 else
   exit
 end
