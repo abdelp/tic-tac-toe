@@ -31,17 +31,36 @@ class Player
   attr_writer :player_number
 end
 
-slots = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+puts "Welcome to the TIC TAC TOE game"
 
-board = Board.new
-player1 = Player.new
-player2 = Player.new
+puts "Main menu"
 
-p board.slots[0], board.slots[1], board.slots[2]
+puts "Type exit to quit the game"
 
-puts "Select a slot:"
-p gets.chomp
+puts "Type start to play the game"
 
-board.select_slot(1, 1)
+exit_play = gets.chomp
 
-p board.slots[0], board.slots[1], board.slots[2]
+if exit_play == "play"
+  slots = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+  board = Board.new
+  player1 = Player.new
+  player2 = Player.new
+
+  p board.slots[0], board.slots[1], board.slots[2]
+
+  puts "Select a slot:"
+
+  p "Player #{player1.player_number}"
+  slot_selected = gets.chomp.to_i
+  board.select_slot(player1, slot_selected)
+  p board.slots[0], board.slots[1], board.slots[2]
+
+  p "Player #{player2.player_number}"
+  slot_selected = gets.chomp.to_i
+  board.select_slot(player2, slot_selected)
+  p board.slots[0], board.slots[1], board.slots[2]
+else
+  exit
+end
