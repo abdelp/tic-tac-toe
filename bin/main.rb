@@ -10,17 +10,18 @@ class Board
   end
 
   def select_slot(player_number, slot_number)
-    x = (slot_number % 3) - 1
-    y = (slot_number.to_f / 3).ceil - 1
-
+    x, y = get_coordinates(slot_number)
     if self.slots[y][x].is_a?(Integer)
-        p player_number
-        puts player_number == 1
-        puts player_number.is_a?(Integer)
-        puts player_number.is_a?(String)
       self.slots[y][x] = player_number == 1 ? "X" : "O"
     end
   end
+
+  def get_coordinates(slot_number)
+    x = (slot_number % 3) - 1
+    y = (slot_number.to_f / 3).ceil - 1
+    [x, y]
+  end
+
 end
 
 class Player
