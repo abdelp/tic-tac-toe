@@ -18,7 +18,9 @@ class Board
 
     x, y = get_coordinates(slot_number)
 
-    raise SlotAlreadyPickedError, 'Error: Slot already selected, please select an available one' unless (slots[y][x]).zero?
+    unless (slots[y][x]).zero?
+      raise SlotAlreadyPickedError, 'Error: Slot already selected, please select an available one'
+    end
 
     slots[y][x] = player_turn
     check_winner(x, y)
@@ -32,7 +34,7 @@ class Board
   end
 
   def show_board
-    puts "_____________"
+    puts '_____________'
     slots.each_with_index do |row, idx|
       x = row.map.with_index do |v, i|
         case v
@@ -45,9 +47,8 @@ class Board
         end
       end
       puts "| #{x[0]} | #{x[1]} | #{x[2]} |"
-      puts "_____________"
+      puts '_____________'
     end
-    
   end
 
   private
@@ -57,20 +58,16 @@ class Board
   end
 
   def check_winner(coord_x, coord_y)
-    self.winner = slots[coord_y].uniq[0] if slots[coord_y].uniq.size == 1
-    if slots.transpose[coord_x].uniq.size == 1 && winner != 0 && !winner.nil?
-      self.winner = slots.transpose[coord_x].uniq[0]
-    end
-
-    diagonals = (0..2).inject([[], []]) do |acc, i|
+    diagonals = (0..2).inject([[], [], [], []]) do |acc, i|
       acc[0].push(slots[i][i])
       acc[1].push(slots[i][2 - i])
+      acc[2].push(slots[i][coord_x])
+      acc[3].push(slots[coord_y][i])
       acc
     end
-    self.winner = diagonals[0].uniq[0] if diagonals[0].uniq.size == 1 && winner != 0 && !winner.nil?
-    self.winner = diagonals[1].uniq[0] if diagonals[1].uniq.size == 1 && winner != 0 && !winner.nil?
-
-    self.game_finished = true if winner != 0 && !winner.nil?
+    winners = diagonals.filter { |arr| arr.uniq.size == 1 && arr[0] != 0 }[0]
+    self.winner = winners[0] unless winners.nil?
+    self.game_finished = true unless winner.nil?
   end
 
   attr_accessor :number_of_slots_selected
