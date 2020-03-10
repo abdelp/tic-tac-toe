@@ -1,37 +1,7 @@
 #!/usr/bin/env ruby
 
-# Board Class for tic-tac-toe game
-class Board
-  attr_reader :slots
-
-  def initialize
-    @slots = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-  end
-
-  def select_slot(player_number, slot_number)
-    x, y = get_coordinates(slot_number)
-    slots[y][x] = player_number == 1 ? 'X' : 'O' if slots[y][x].is_a?(Integer)
-  end
-
-  def get_coordinates(slot_number)
-    x = (slot_number % 3) - 1
-    y = (slot_number.to_f / 3).ceil - 1
-    [x, y]
-  end
-end
-
-# Class for players
-class Player
-  attr_reader :player_number
-
-  def initialize(player_number)
-    self.player_number = player_number
-  end
-
-  private
-
-  attr_writer :player_number
-end
+require "./lib/board.rb"
+require "./lib/player.rb"
 
 puts 'Welcome to the TIC TAC TOE game',
      'Main menu',
@@ -52,10 +22,15 @@ if option == 'play'
 
   puts 'Select a slot:'
 
+  # while the game doesn't end
+
   while slots_selected < 9
+
+    # Request to the user to select a slot
+  
     p "Player #{current_player.player_number}"
     slot_selected = gets.chomp.to_i
-    board.select_slot(current_player.player_number, slot_selected)
+    board.select_slot(slot_selected)
     p board.slots[0], board.slots[1], board.slots[2]
     p 'Now, your move is displayed on the board'
 
