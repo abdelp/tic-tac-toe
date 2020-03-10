@@ -23,6 +23,8 @@ class Board
     end
 
     slots[y][x] = player_turn
+    @number_of_slots_selected += 1
+    self.game_finished = true if @number_of_slots_selected == 9
     check_winner(x, y)
     switch_player_turn unless game_finished
   end
@@ -70,6 +72,5 @@ class Board
     self.game_finished = true unless winner.nil?
   end
 
-  attr_accessor :number_of_slots_selected
   attr_writer :game_finished, :winner
 end

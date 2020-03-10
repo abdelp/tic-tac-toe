@@ -30,11 +30,11 @@ if option == 'start'
   board = Board.new
 
   current_player = player1
-  slots_selected = 0
-
-  board.show_board
 
   until board.game_finished
+    system 'clear'
+    board.show_board
+
     begin
       puts "Select a slot #{current_player.player_name}: "
       print '> '
@@ -46,14 +46,18 @@ if option == 'start'
       retry
     end
 
-    board.show_board
-
-    slots_selected += 1
     current_player = current_player.player_number == 1 ? player2 : player1
   end
 
+  system 'clear'
+  board.show_board
   puts 'Game finished'
-  puts "The winner is #{board.winner == 1 ? player1.player_name : player2.player_name}!!"
+
+  if board.winner.nil?
+    puts 'Draw'
+  else
+    puts "The winner is #{board.winner == 1 ? player1.player_name : player2.player_name}!!"
+  end
 else
   exit
 end
