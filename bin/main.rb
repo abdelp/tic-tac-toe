@@ -18,12 +18,9 @@ require './lib/player.rb'
   current_player = player1
   slots_selected = 0
 
-  # p board.slots[0], board.slots[1], board.slots[2]
   board.show_board
 
   puts 'Select a slot:'
-
-  # while the game doesn't end
 
   until board.game_finished
     begin
@@ -34,8 +31,7 @@ require './lib/player.rb'
       puts e
       retry
     end
-    
-    # p board.slots[0], board.slots[1], board.slots[2]
+
     board.show_board
     p 'Now, your move is displayed on the board'
 

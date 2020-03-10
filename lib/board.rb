@@ -1,5 +1,9 @@
+require './lib/error.rb'
+
 # Board Class for tic-tac-toe game
 class Board
+  include ErrorsModule
+
   attr_accessor :player_turn
   attr_reader :slots, :game_finished
 
@@ -10,11 +14,11 @@ class Board
   end
 
   def select_slot(slot_number)
-    raise StandardError, 'Error: Please type numbers between 1-9' unless slot_number >= 1 && slot_number <= 9
+    raise NumberOutOfRangeError, 'Error: Please type numbers between 1-9' unless slot_number >= 1 && slot_number <= 9
 
     x, y = get_coordinates(slot_number)
 
-    raise StandardError, 'Error: Slot already selected, please select an available one' unless (slots[y][x]).zero?
+    raise SlotAlreadyPickedError, 'Error: Slot already selected, please select an available one' unless (slots[y][x]).zero?
 
     slots[y][x] = player_turn
     check_winner(x, y)
