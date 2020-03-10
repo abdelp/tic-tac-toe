@@ -10,9 +10,11 @@ class Board
   end
 
   def select_slot(slot_number)
+    raise StandardError, 'Please type numbers between 1-9' unless slot_number >= 1 && slot_number <= 9
+
     x, y = get_coordinates(slot_number)
     slots[y][x] = player_turn
-    check_winner
+    check_winner(x, y)
     switch_player_turn unless game_finished
   end
 
@@ -29,10 +31,12 @@ class Board
   end
 
   def check_winner(coord_x, coord_y)
+    p slots[coord_y].uniq.size
     winner = slots[coord_y].uniq[0] if slots[coord_y].uniq.size == 1
+    
     winner = slots.transpose[coord_x].uniq[0] if slots.transpose[coord_x].uniq.size == 1
 
-    diagonals = (0..2).each_with_object([[], []]) do |acc, i|
+    diagonals = (0..2).inject([[], []]) do |acc, i|
       acc[0].push(slots[i][i])
       acc[1].push(slots[i][2 - i])
       acc

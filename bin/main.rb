@@ -13,8 +13,8 @@ option = gets.chomp
 
 if option == 'play'
   board = Board.new
-  player1 = Player.new(1)
-  player2 = Player.new(2)
+  player1 = Player.new(1, 'Player #1 Name')
+  player2 = Player.new(2,'Player #2 Name')
   current_player = player1
   slots_selected = 0
 
@@ -29,7 +29,14 @@ if option == 'play'
     # Request to the user to select a slot
     p "Player #{current_player.player_number}"
     slot_selected = gets.chomp.to_i
-    board.select_slot(slot_selected)
+
+    begin
+      board.select_slot(slot_selected)
+    rescue StandardError => e
+      p e
+      retry
+    end
+    
     p board.slots[0], board.slots[1], board.slots[2]
     p 'Now, your move is displayed on the board'
 
