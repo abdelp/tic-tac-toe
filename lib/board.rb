@@ -5,7 +5,7 @@ class Board
   include ErrorsModule
 
   attr_accessor :player_turn
-  attr_reader :slots, :game_finished
+  attr_reader :slots, :game_finished, :winner
 
   def initialize
     @slots = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
@@ -57,19 +57,22 @@ class Board
   end
 
   def check_winner(coord_x, coord_y)
-    winner = slots[coord_y].uniq[0] if slots[coord_y].uniq.size == 1
-    winner = slots.transpose[coord_x].uniq[0] if slots.transpose[coord_x].uniq.size == 1
+    self.winner = slots[coord_y].uniq[0] if slots[coord_y].uniq.size == 1
+    if slots.transpose[coord_x].uniq.size == 1 && winner != 0 && !winner.nil?
+      self.winner = slots.transpose[coord_x].uniq[0]
+    end
+
     diagonals = (0..2).inject([[], []]) do |acc, i|
       acc[0].push(slots[i][i])
       acc[1].push(slots[i][2 - i])
       acc
     end
-    winner = diagonals[0].uniq[0] if diagonals[0].uniq.size == 1
-    winner = diagonals[1].uniq[0] if diagonals[1].uniq.size == 1
+    self.winner = diagonals[0].uniq[0] if diagonals[0].uniq.size == 1 && winner != 0 && !winner.nil?
+    self.winner = diagonals[1].uniq[0] if diagonals[1].uniq.size == 1 && winner != 0 && !winner.nil?
 
     self.game_finished = true if winner != 0 && !winner.nil?
   end
 
   attr_accessor :number_of_slots_selected
-  attr_writer :game_finished
+  attr_writer :game_finished, :winner
 end

@@ -3,28 +3,42 @@
 require './lib/board.rb'
 require './lib/player.rb'
 
-# puts 'Welcome to the TIC TAC TOE game',
-#      'Main menu',
-#      'Type exit to quit the game',
-#      'Type start to play the game'
+puts 'Welcome to the TIC TAC TOE game',
+     'Main menu',
+     'Type exit to quit the game',
+     'Type start to play the game'
 
-# print '> '
-# option = gets.chomp
+print '> '
+option = gets.chomp
 
-# if option == 'play'
+if option == 'start'
+  player1 = nil
+  player2 = nil
+
+  (1..2).each do |num|
+    puts "Player ##{num} Name: "
+    print '> '
+    player_name = gets.chomp
+
+    if num == 1
+      player1 = Player.new(1, player_name)
+    else
+      player2 = Player.new(2, player_name)
+    end
+  end
+
   board = Board.new
-  player1 = Player.new(1, 'Player #1 Name')
-  player2 = Player.new(2,'Player #2 Name')
+
   current_player = player1
   slots_selected = 0
 
   board.show_board
 
-  puts 'Select a slot:'
-
   until board.game_finished
     begin
-      p "Player #{current_player.player_number}"
+      puts "Select a slot #{current_player.player_name}: "
+      print '> '
+
       slot_selected = gets.chomp.to_i
       board.select_slot(slot_selected)
     rescue StandardError => e
@@ -33,13 +47,13 @@ require './lib/player.rb'
     end
 
     board.show_board
-    p 'Now, your move is displayed on the board'
 
     slots_selected += 1
     current_player = current_player.player_number == 1 ? player2 : player1
   end
 
-  p 'Game finished'
-# else
-#   exit
-# end
+  puts 'Game finished'
+  puts "The winner is #{board.winner == 1 ? player1.player_name : player2.player_name}!!"
+else
+  exit
+end
