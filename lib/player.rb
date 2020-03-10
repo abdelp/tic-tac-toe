@@ -2,7 +2,7 @@
 class Player
   attr_reader :player_number, :player_name, :score
 
-  def initialize(player_number)
+  def initialize(player_number, player_name, score)
     self.player_number = player_number
   end
 

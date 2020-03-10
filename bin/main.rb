@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require "./lib/board.rb"
-require "./lib/player.rb"
+require './lib/board.rb'
+require './lib/player.rb'
 
 puts 'Welcome to the TIC TAC TOE game',
      'Main menu',
@@ -27,7 +27,6 @@ if option == 'play'
   while slots_selected < 9
 
     # Request to the user to select a slot
-  
     p "Player #{current_player.player_number}"
     slot_selected = gets.chomp.to_i
     board.select_slot(slot_selected)
