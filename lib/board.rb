@@ -38,7 +38,7 @@ class Board
           'O'
         end
       end
-      output += "| #{x[0]} | #{x[1]} | #{x[2]} |\n" + '_' * 13 + "\n"
+      output += "| #{x[0]} | #{x[1]} | #{x[2]} |\n" + '-' * 13 + "\n"
     end
     output
   end
