@@ -31,8 +31,8 @@
 - Players could enter their names/nicknames before starting the game
 - Players will choose slots available (numbered from 1 to 9) for them from the game board one by one
 - The first player is assigned to the **X**, and the second player is assigned to the **O**
-- If the players select not available slots, corresponding message will be shown
-- The player wins when they have all the X's or O's filled in the same row or column, or in the diagonals
+- If the players select not available slots, the corresponding message will be shown
+- The player wins when they have all the X's or O's filled in the same row or column, or the diagonals
 - If no player gets filled row, column or diagonals, it will be a draw
 
 
