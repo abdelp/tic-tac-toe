@@ -33,7 +33,7 @@ if option == 'start'
 
   until board.game_finished
     system 'clear'
-    board.show_board
+    puts board.show_board
 
     begin
       puts "Select a slot #{current_player.player_name}: "
@@ -50,7 +50,7 @@ if option == 'start'
   end
 
   system 'clear'
-  board.show_board
+  puts board.show_board
   puts 'Game finished'
 
   if board.winner.nil?

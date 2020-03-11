@@ -36,7 +36,7 @@ class Board
   end
 
   def show_board
-    puts '_____________'
+    output = '_' * 13 + "\n"
     slots.each_with_index do |row, idx|
       x = row.map.with_index do |v, i|
         case v
@@ -48,9 +48,9 @@ class Board
           'O'
         end
       end
-      puts "| #{x[0]} | #{x[1]} | #{x[2]} |"
-      puts '_____________'
+      output += "| #{x[0]} | #{x[1]} | #{x[2]} |\n" + '_' * 13 + "\n"
     end
+    output
   end
 
   private
