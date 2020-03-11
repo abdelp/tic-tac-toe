@@ -1,15 +1,19 @@
 #!/usr/bin/env ruby
 
-require './lib/board.rb'
-require './lib/player.rb'
+require_relative '../lib/game.rb'
+require_relative '../lib/player.rb'
 
-puts 'Welcome to the TIC TAC TOE game',
-     'Main menu',
-     'Type exit to quit the game',
-     'Type start to play the game'
+def introduction
+  puts 'Welcome to the TIC TAC TOE game',
+       'Main menu',
+       'Type exit to quit the game',
+       'Type start to play the game'
 
-print '> '
-option = gets.chomp
+  print '> '
+  gets.chomp.downcase
+end
+
+option = introduction
 
 if option == 'start'
   player1 = nil
@@ -27,11 +31,11 @@ if option == 'start'
     end
   end
 
-  board = Board.new
+  game = Game.new(player1, player2)
+  board = game.board
 
-  current_player = player1
-
-  until board.game_finished
+  until game.game_finished?
+    current_player = game.current_player
     system 'clear'
     puts board.show_board
 
@@ -40,23 +44,23 @@ if option == 'start'
       print '> '
 
       slot_selected = gets.chomp.to_i
-      board.select_slot(slot_selected)
+      board.select_slot(current_player.player_number, slot_selected)
+      game.check_winner
+      game.switch_player_turn
     rescue StandardError => e
       puts e
       retry
     end
-
-    current_player = current_player.player_number == 1 ? player2 : player1
   end
 
   system 'clear'
   puts board.show_board
   puts 'Game finished'
 
-  if board.winner.nil?
+  if game.winner.nil?
     puts 'Draw'
   else
-    puts "The winner is #{board.winner == 1 ? player1.player_name : player2.player_name}!!"
+    puts "The winner is #{game.winner == 1 ? game.player1.player_name : game.player2.player_name}!!"
   end
 else
   exit
