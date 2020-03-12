@@ -6,25 +6,6 @@
 
 - ruby 2.6.5p114 (2019-10-01 revision 67812) [x86_64-linux]
 
-## Live Demo
-
-[Live Demo Link](https://repl.it/@nurislamab/tic-tac-toe)
-
-## Authors
-
-👤 **Nurislam Ab**
-
-- Github: [@nurislam-ab](https://github.com/nurislam-ab)
-- Twitter: [@NurislamAb](https://twitter.com/NurislamAb)
-- Linkedin: [Nurislam Ab](https://www.linkedin.com/in/nurislam-ab/)
-
-👤 **Abdel Pérez**
-
-- Github: [@abdelp](https://github.com/abdelp/)
-- Twitter: [@AbdelPerez11](https://twitter.com/abdelperez11)
-- Linkedin: [Abdel Pérez](https://www.linkedin.com/in/abdel-p%C3%A9rez-t%C3%A9llez-72b2aa153/)
-
-
 ## Gameplay
 
 - The game could be started by typing **y** to the question "Do you want to start the game?", while to close the game just type **exit**
@@ -35,6 +16,10 @@
 - If the players select not available slots, the corresponding message will be shown
 - The player wins when they have all the X's or O's filled in the same row or column, or the diagonals
 - If no player gets filled row, column or diagonals, when all of the slots are selected, it will be a draw
+
+## Live Demo
+
+[Live Demo Link](https://repl.it/@nurislamab/tic-tac-toe)
 
 
 ## Installation
@@ -55,6 +40,21 @@ From the command line:
 Go to the root folder of the project and execute:
 
     $ bin/main.rb
+
+
+## Authors
+
+👤 **Nurislam Ab**
+
+- Github: [@nurislam-ab](https://github.com/nurislam-ab)
+- Twitter: [@NurislamAb](https://twitter.com/NurislamAb)
+- Linkedin: [Nurislam Ab](https://www.linkedin.com/in/nurislam-ab/)
+
+👤 **Abdel Pérez**
+
+- Github: [@abdelp](https://github.com/abdelp/)
+- Twitter: [@AbdelPerez11](https://twitter.com/abdelperez11)
+- Linkedin: [Abdel Pérez](https://www.linkedin.com/in/abdel-p%C3%A9rez-t%C3%A9llez-72b2aa153/)
 
 
 ## 🤝 Contributing
