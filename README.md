@@ -37,18 +37,20 @@
 - If no player gets filled row, column or diagonals, when all of the slots are selected, it will be a draw
 
 
+## Installation
+
 ### Requirements
 
 - ruby ^2.6.x
 - git ^2.x
 
-## Installation
+### Steps
 
 From the command line:
 
     $ git clone https://github.com/nurislam-ab/tic-tac-toe.git
 
-## Start Playing
+### Start Playing
 
 Go to the root folder of the project and execute:
 
