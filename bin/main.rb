@@ -2,6 +2,9 @@
 
 require_relative '../lib/game.rb'
 require_relative '../lib/player.rb'
+require_relative '../lib/error.rb'
+
+include ErrorsModule
 
 puts 'Welcome to the TIC TAC TOE game',
      'Main menu',
@@ -15,14 +18,21 @@ if option == 'y'
   player2 = nil
 
   (1..2).each do |num|
-    puts "Player ##{num} Name: "
-    print '> '
-    player_name = gets.chomp
+    begin
+      puts "Player ##{num} Name: "
+      print '> '
+      player_name = gets.chomp
 
-    if num == 1
-      player1 = Player.new(1, player_name)
-    else
-      player2 = Player.new(2, player_name)
+      raise EmptyNameError, 'Name can\'t be empty' if player_name.strip.empty?
+
+      if num == 1
+        player1 = Player.new(1, player_name)
+      else
+        player2 = Player.new(2, player_name)
+      end
+    rescue EmptyNameError => e
+      puts e
+      retry
     end
   end
 
