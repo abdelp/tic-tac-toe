@@ -1,69 +1,62 @@
 #!/usr/bin/env ruby
 
-# Board Class for tic-tac-toe game
-class Board
-  attr_reader :slots
-
-  def initialize
-    @slots = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-  end
-
-  def select_slot(player_number, slot_number)
-    x, y = get_coordinates(slot_number)
-    slots[y][x] = player_number == 1 ? 'X' : 'O' if slots[y][x].is_a?(Integer)
-  end
-
-  def get_coordinates(slot_number)
-    x = (slot_number % 3) - 1
-    y = (slot_number.to_f / 3).ceil - 1
-    [x, y]
-  end
-end
-
-# Class for players
-class Player
-  attr_reader :player_number
-
-  def initialize(player_number)
-    self.player_number = player_number
-  end
-
-  private
-
-  attr_writer :player_number
-end
+require_relative '../lib/game.rb'
+require_relative '../lib/player.rb'
 
 puts 'Welcome to the TIC TAC TOE game',
      'Main menu',
      'Type exit to quit the game',
-     'Type start to play the game'
+     'Do you want to start the game? (y/n): '
 
-print '> '
-option = gets.chomp
+option = gets.chomp.downcase
 
-if option == 'play'
-  board = Board.new
-  player1 = Player.new(1)
-  player2 = Player.new(2)
-  current_player = player1
-  slots_selected = 0
+if option == 'y'
+  player1 = nil
+  player2 = nil
 
-  p board.slots[0], board.slots[1], board.slots[2]
+  (1..2).each do |num|
+    puts "Player ##{num} Name: "
+    print '> '
+    player_name = gets.chomp
 
-  puts 'Select a slot:'
-
-  while slots_selected < 9
-    p "Player #{current_player.player_number}"
-    slot_selected = gets.chomp.to_i
-    board.select_slot(current_player.player_number, slot_selected)
-    p board.slots[0], board.slots[1], board.slots[2]
-    p 'Now, your move is displayed on the board'
-
-    slots_selected += 1
-    current_player = current_player.player_number == 1 ? player2 : player1
+    if num == 1
+      player1 = Player.new(1, player_name)
+    else
+      player2 = Player.new(2, player_name)
+    end
   end
 
-  p 'Game finished'
+  game = Game.new(player1, player2)
+  board = game.board
+
+  until game.game_finished?
+    current_player = game.current_player
+    system 'clear'
+    puts board.show_board + "\n"
+
+    begin
+      puts "Select a slot #{current_player.player_name}: "
+      print '> '
+
+      slot_selected = gets.chomp.to_i
+      board.select_slot(current_player.player_number, slot_selected)
+      game.check_winner
+      game.switch_player_turn
+    rescue StandardError => e
+      puts e
+      retry
+    end
+  end
+
+  system 'clear'
+  puts board.show_board + "\n"
+  puts 'Game finished'
+
+  if game.winner.nil?
+    puts 'Draw'
+  else
+    puts "The winner is #{game.winner == 1 ? game.player1.player_name : game.player2.player_name}!!"
+  end
 else
   exit
 end
