@@ -8,7 +8,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://repl.it/@Abdel_P/Bubble-Sort)
+[Live Demo Link](https://repl.it/@nurislamab/tic-tac-toe)
 
 ## Authors
 
@@ -25,11 +25,23 @@
 - Linkedin: [Abdel Pérez](https://www.linkedin.com/in/abdel-p%C3%A9rez-t%C3%A9llez-72b2aa153/)
 
 
+## Gameplay
+
+- The game could be started by typing **y** to the question "Do you want to start the game?", while to close the game just type **exit**
+- There are two players in the game and one game board
+- Players could enter their names/nicknames before starting the game
+- Players will choose slots available (numbered from 1 to 9) for them from the game board one by one
+- The first player is assigned to the **X**, and the second player is assigned to the **O**
+- If the players select not available slots, the corresponding message will be shown
+- The player wins when they have all the X's or O's filled in the same row or column, or the diagonals
+- If no player gets filled row, column or diagonals, it will be a draw
+
+
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/abdelp/bubble-sort/issues).
+Feel free to check the [issues page](https://github.com/nurislam-ab/tic-tac-toe/issues).
 
 ## Show your support
 
