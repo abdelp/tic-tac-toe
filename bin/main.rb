@@ -15,14 +15,21 @@ if option == 'y'
   player2 = nil
 
   (1..2).each do |num|
-    puts "Player ##{num} Name: "
-    print '> '
-    player_name = gets.chomp
+    begin
+      puts "Player ##{num} Name: "
+      print '> '
+      player_name = gets.chomp
 
-    if num == 1
-      player1 = Player.new(1, player_name)
-    else
-      player2 = Player.new(2, player_name)
+      raise StandardError, 'Name can\'t be empty' if player_name.strip.empty?
+
+      if num == 1
+        player1 = Player.new(1, player_name)
+      else
+        player2 = Player.new(2, player_name)
+      end
+    rescue StandardError => e
+      puts e
+      retry
     end
   end
 
