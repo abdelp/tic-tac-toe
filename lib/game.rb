@@ -39,7 +39,7 @@ class Game
   def reset_game
     self.game_finished = false
     self.winner = nil
-    self.board.clean_board
+    board.clean_board
   end
 
   private

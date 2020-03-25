@@ -18,7 +18,7 @@ RSpec.describe Board do
     end
 
     it 'increments the number of slots selected by one' do
-      expect { board.select_slot(1, 2) }.to change{board.number_of_slots_selected}.by(1)
+      expect { board.select_slot(1, 2) }.to change { board.number_of_slots_selected }.by(1)
     end
   end
 
