@@ -8,7 +8,9 @@ RSpec.describe Game do
         player2 = Player.new(2, 'b')
         game = Game.new(player1, player2)
 
-        expect([game.game_finished, game.winner, game.board.numbers_of_slots_selected).to eq([false, 0, ])
+        expect(game.game_finished).to be false
+        expect(game.winner).to be_nil
+        expect(game.board.number_of_slots_selected).to be < 9
     end
   end    
 end
