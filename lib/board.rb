@@ -46,6 +46,7 @@ class Board
     @slots = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     @number_of_slots_selected = 0
   end
+
   private
 
   def get_coordinates(slot_number)

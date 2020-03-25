@@ -41,6 +41,7 @@ class Game
     self.winner = nil
     self.board.clean_board
   end
+
   private
 
   attr_writer :game_finished, :current_player, :winner
