@@ -16,6 +16,10 @@ RSpec.describe Board do
     it 'rejects any slot numbers already selected' do
       expect { board.select_slot(1, 1) }.to raise_error(ErrorsModule::SlotAlreadyPickedError)
     end
+
+    it 'increments the number of slots selected by one' do
+      expect { board.select_slot(1, 2) }.to change{board.number_of_slots_selected}.by(1)
+    end
   end
 
   describe '#show_board' do

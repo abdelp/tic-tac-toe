@@ -7,8 +7,7 @@ class Board
   attr_reader :slots, :number_of_slots_selected
 
   def initialize
-    @slots = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-    @number_of_slots_selected = 0
+    clean_board
   end
 
   def select_slot(player, slot_number)
@@ -43,6 +42,10 @@ class Board
     output
   end
 
+  def clean_board
+    @slots = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    @number_of_slots_selected = 0
+  end
   private
 
   def get_coordinates(slot_number)
