@@ -7,8 +7,7 @@ class Board
   attr_reader :slots, :number_of_slots_selected
 
   def initialize
-    @slots = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-    @number_of_slots_selected = 0
+    clean_board
   end
 
   def select_slot(player, slot_number)
@@ -41,6 +40,11 @@ class Board
       output += "| #{x[0]} | #{x[1]} | #{x[2]} |\n" + '-' * 13 + "\n"
     end
     output
+  end
+
+  def clean_board
+    @slots = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    @number_of_slots_selected = 0
   end
 
   private

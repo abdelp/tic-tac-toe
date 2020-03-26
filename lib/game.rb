@@ -36,6 +36,12 @@ class Game
     self.current_player = current_player.player_number == 1 ? @player2 : @player1
   end
 
+  def reset_game
+    self.game_finished = false
+    self.winner = nil
+    board.clean_board
+  end
+
   private
 
   attr_writer :game_finished, :current_player, :winner
