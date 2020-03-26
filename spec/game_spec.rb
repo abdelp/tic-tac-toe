@@ -144,5 +144,16 @@ RSpec.describe Game do
 
       expect(game.winner).to eq(1)
     end
+
+    it 'returns nil when game is finished and there\'s no winner (draw)' do
+      game.reset_game
+
+      (1..draw_moves.size).each do |i|
+        player = i.even? ? 2 : 1
+        game.board.select_slot(player, draw_moves[i - 1])
+      end
+      game.check_winner
+      expect(game.winner).to be_nil
+    end
   end
 end
