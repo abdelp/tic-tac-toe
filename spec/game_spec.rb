@@ -152,6 +152,7 @@ RSpec.describe Game do
         player = i.even? ? 2 : 1
         game.board.select_slot(player, draw_moves[i - 1])
       end
+
       game.check_winner
       expect(game.winner).to be_nil
     end
