@@ -5,14 +5,13 @@ class Game
 
   def initialize(player1, player2)
     @board = Board.new
-    @player1 = player1
-    @player2 = player2
+    @player1, @player2 = [player1, player2]
     self.current_player = @player1
     self.game_finished = false
   end
 
   def game_finished?
-    self.game_finished = true if self.winner || @board.number_of_slots_selected == 9
+    self.game_finished = true if winner || @board.number_of_slots_selected == 9
     game_finished
   end
 

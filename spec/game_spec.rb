@@ -2,8 +2,8 @@ require_relative '../lib/game.rb'
 require_relative '../lib/player.rb'
 
 RSpec.describe Game do
-  let(:player1) { Player.new(1, 'a') }
-  let(:player2) { Player.new(2, 'b') }
+  let(:player1) { Player.new('a') }
+  let(:player2) { Player.new('b') }
   let(:game) { Game.new(player1, player2) }
   let(:draw_moves) { [1, 2, 3, 4, 6, 5, 7, 9, 8] }
   let(:p1_h_win_moves) { [1, 4, 2, 5, 3] }
