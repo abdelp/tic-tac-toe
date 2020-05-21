@@ -7,26 +7,20 @@ require_relative '../lib/instruction.rb'
 option = Instruction.start_game
 
 if option == 'y'
-  player1 = nil
-  player2 = nil
+  players = []
 
   (1..2).each do |num|
     player_name = Instruction.ask_username(num)
-
-    if num == 1
-      player1 = Player.new(1, player_name)
-    else
-      player2 = Player.new(2, player_name)
-    end
+    players << Player.new(player_name)
   end
 
-  game = Game.new(player1, player2)
+  game = Game.new(*players)
   board = game.board
 
   until game.game_finished?
     current_player = game.current_player
     system 'clear'
-    puts board.show_board + "\n"
+    puts board.show_board
     slot_selected = Instruction.ask_user_selection(current_player.player_name)
 
     begin
@@ -41,7 +35,7 @@ if option == 'y'
   end
 
   system 'clear'
-  puts board.show_board + "\n"
+  puts board.show_board
   Instruction.winner_announcement(game)
 else
   exit
