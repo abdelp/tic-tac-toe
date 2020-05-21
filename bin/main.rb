@@ -4,6 +4,7 @@ require_relative '../lib/game.rb'
 require_relative '../lib/player.rb'
 require_relative '../lib/instruction.rb'
 
+system 'clear'
 option = Instruction.start_game
 
 if option == 'y'
@@ -18,15 +19,17 @@ if option == 'y'
   board = game.board
 
   until game.game_finished?
+    err_msg = nil
     current_player = game.current_player
-    system 'clear'
-    puts board.show_board
-    slot_selected = Instruction.ask_user_selection(current_player.player_name)
 
     begin
+      system 'clear'
+      puts board.show_board
+      puts err_msg if err_msg 
+      slot_selected = Instruction.ask_user_selection(current_player.player_name)
       board.select_slot(current_player.player_number, slot_selected)
     rescue StandardError => e
-      puts e
+      err_msg = e
       retry
     end
 
