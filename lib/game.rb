@@ -12,7 +12,7 @@ class Game
   end
 
   def game_finished?
-    self.game_finished = true if winner || @board.number_of_slots_selected == 9
+    self.game_finished = true if self.winner || @board.number_of_slots_selected == 9
     game_finished
   end
 
